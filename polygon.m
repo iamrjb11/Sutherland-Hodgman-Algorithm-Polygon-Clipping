@@ -33,7 +33,7 @@ end
 plot(xPart,yPart,'red','linewidth',1);
 hold on
 
-L=length(xPart)
+L=length(xPart);
 %For Clipped against left side
 xClippedL=zeros(1); % store new clipped xpart
 yClippedL=zeros(1); % store new clipped ypart
@@ -126,7 +126,7 @@ title("Clipped Against Bottom");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
 plot(xClippedB,yClippedB,'blue','linewidth',2);
 hold on
-
+%For Clipped against right side
 xClippedR=zeros(1);
 yClippedR=zeros(1);
 xi=1;
@@ -136,23 +136,23 @@ for i=2:1:L
     curX=xClippedB(i);
     preY=yClippedB(i-1);
     curY=yClippedB(i);
-    if(preX<=wSize(3) && curX<=wSize(3))
+    if(preX<=xMax && curX<=xMax)
         xClippedR(xi)=curX;
         yClippedR(yi)=curY;
         xi=xi+1;
         yi=yi+1;
-    elseif(preX>wSize(3) && curX>wSize(3))
+    elseif(preX>xMax && curX>xMax)
         continue;
-    elseif(preX<=wSize(3) && curX>wSize(3))
-        interX=wSize(3);
+    elseif(preX<=xMax && curX>xMax)
+        interX=xMax;
         interY=preY+(interX-preX)*((curY-preY)/(curX-preX));
         xClippedR(xi)=interX;
         yClippedR(yi)=interY;
         xi=xi+1;
         yi=yi+1;
         
-    elseif(preX>wSize(3) && curX<=wSize(3))
-        interX=wSize(3);
+    elseif(preX>xMax && curX<=xMax)
+        interX=xMax;
         interY=preY+(interX-preX)*((curY-preY)/(curX-preX));
         xClippedR(xi)=interX;
         yClippedR(yi)=interY;
@@ -161,17 +161,13 @@ for i=2:1:L
         xClippedR(xi)=curX;
         yClippedR(yi)=curY;
         xi=xi+1;
-        yi=yi+1;
-        
+        yi=yi+1; 
     end
-    
-    
-    
 end
 xClippedR(xi)=xClippedR(1);
 yClippedR(yi)=yClippedR(1);
-disp(xClippedR);
-disp(yClippedR);
+%disp(xClippedR);
+%disp(yClippedR);
 
 figure,
 title("Clipped Against Right");
@@ -179,6 +175,7 @@ polygonDisplayFunction(xMin,yMin,xMax,yMax);
 plot(xClippedR,yClippedR,'blue','linewidth',2);
 hold on
 
+%For Clipped against top side
 xClippedU=zeros(1);
 yClippedU=zeros(1);
 xi=1;
@@ -189,16 +186,16 @@ for i=2:1:L
     preY=yClippedR(i-1);
     curY=yClippedR(i);
     
-    if(preY<=wSize(4) && curY<=wSize(4))
+    if(preY<=yMax && curY<=yMax)
         xClippedU(xi)=curX;
         yClippedU(yi)=curY;
         xi=xi+1;
         yi=yi+1;
-    elseif(preY>wSize(4) && curY>wSize(4))
+    elseif(preY>yMax && curY>yMax)
         continue;
-    elseif(preY<=wSize(4) && curY>wSize(4))
+    elseif(preY<=yMax && curY>yMax)
         
-        interY=wSize(4);
+        interY=yMax;
         
         interX=preX+(interY-preY)*((curX-preX)/(curY-preY));
         xClippedU(xi)=interX;
@@ -206,8 +203,8 @@ for i=2:1:L
         xi=xi+1;
         yi=yi+1;
         
-    elseif(preY>wSize(4) && curY<=wSize(4))
-        interY=wSize(4);
+    elseif(preY>yMax && curY<=yMax)
+        interY=yMax;
         interX=preX+(interY-preY)*((curX-preX)/(curY-preY));
         xClippedU(xi)=interX;
         yClippedU(yi)=interY;
@@ -216,18 +213,14 @@ for i=2:1:L
         xClippedU(xi)=curX;
         yClippedU(yi)=curY;
         xi=xi+1;
-        yi=yi+1;
-        
+        yi=yi+1; 
     end
-    
-    
-    
 end
 xClippedU(xi)=xClippedU(1);
 yClippedU(yi)=yClippedU(1);
-disp('');
-disp(xClippedU);
-disp(yClippedU);
+%disp('');
+%disp(xClippedU);
+%disp(yClippedU);
 
 figure,
 title("Polygon Clipped Against Top");
