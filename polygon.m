@@ -51,16 +51,16 @@ for i=2:1:L
         yi=yi+1;
     elseif(preX<xMin && curX<xMin) %Pi-1 and Pi - both are to the right side of the clipping line.
         continue;
-    elseif(preX>=wSize(2) && curX<wSize(2)) %Pi-1 to the left, but Pi to the right side of the clipping
-        interX=wSize(2);
+    elseif(preX>=xMin && curX<xMin) %Pi-1 to the left, but Pi to the right side of the clipping
+        interX=xMin;
         interY=preY+(interX-preX)*((curY-preY)/(curX-preX));
         xClippedL(xi)=interX;
         yClippedL(yi)=interY;
         xi=xi+1;
         yi=yi+1;
         
-    elseif(preX<wSize(2) && curX>=wSize(2)) %Pi-1 to right, but Pi to the left of the clipping line.
-        interX=wSize(2);
+    elseif(preX<xMin && curX>=xMin) %Pi-1 to right, but Pi to the left of the clipping line.
+        interX=xMin;
         interY=preY+(interX-preX)*((curY-preY)/(curX-preX));
         xClippedL(xi)=interX;
         yClippedL(yi)=interY;
