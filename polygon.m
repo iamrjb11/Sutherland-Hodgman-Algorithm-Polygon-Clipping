@@ -80,7 +80,7 @@ title("Clipped Against Left");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
 plot(xClippedL,yClippedL,'blue','linewidth',2);
 hold on
-
+%For Clipped against Bottom side
 xClippedB=zeros(1);
 yClippedB=zeros(1);
 xi=1;
@@ -90,23 +90,23 @@ for i=2:1:L
     curX=xClippedL(i);
     preY=yClippedL(i-1);
     curY=yClippedL(i);
-    if(preY>=wSize(2) && curY>=wSize(1))
+    if(preY>=yMin && curY>=yMin)
         xClippedB(xi)=curX;
         yClippedB(yi)=curY;
         xi=xi+1;
         yi=yi+1;
-    elseif(preY<wSize(2) && curY<wSize(2))
+    elseif(preY<yMin && curY<yMin)
         continue;
-    elseif(preY>=wSize(2) && curY<wSize(2))
-        interY=wSize(2);
+    elseif(preY>=yMin && curY<yMin)
+        interY=yMin;
         interX=preX+(interY-preY)*((curX-preX)/(curY-preY));
         xClippedB(xi)=interX;
         yClippedB(yi)=interY;
         xi=xi+1;
         yi=yi+1;
         
-    elseif(preY<wSize(2) && curY>=wSize(2))
-        interY=wSize(2);
+    elseif(preY<yMin && curY>=yMin)
+        interY=yMin;
         interX=preX+(interY-preY)*((curX-preX)/(curY-preY));
         xClippedB(xi)=interX;
         yClippedB(yi)=interY;
@@ -115,12 +115,8 @@ for i=2:1:L
         xClippedB(xi)=curX;
         yClippedB(yi)=curY;
         xi=xi+1;
-        yi=yi+1;
-        
+        yi=yi+1;        
     end
-    
-    
-    
 end
 xClippedB(xi)=xClippedB(1);
 yClippedB(yi)=yClippedB(1);
