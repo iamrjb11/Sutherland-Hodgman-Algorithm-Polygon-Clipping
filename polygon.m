@@ -12,7 +12,7 @@ yMax=wSize(4);
 
 
 figure,
-title("--- Polygon Clipped ---");
+title("--- Polygon ---");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
 
 disp("Polygon Coordinates (X,Y)");
@@ -74,11 +74,12 @@ for i=2:1:L
 end
 xClippedL(xi)=xClippedL(1);
 yClippedL(yi)=yClippedL(1);
+L=length(xClippedL);
 
 figure,
 title("Clipped Against Left");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
-plot(xClippedL,yClippedL,'blue','linewidth',2);
+plot(xClippedL,yClippedL,'blue','linewidth',1);
 hold on
 %For Clipped against Bottom side
 xClippedB=zeros(1);
@@ -120,11 +121,12 @@ for i=2:1:L
 end
 xClippedB(xi)=xClippedB(1);
 yClippedB(yi)=yClippedB(1);
+L=length(xClippedB);
 
 figure,
 title("Clipped Against Bottom");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
-plot(xClippedB,yClippedB,'blue','linewidth',2);
+plot(xClippedB,yClippedB,'blue','linewidth',1);
 hold on
 %For Clipped against right side
 xClippedR=zeros(1);
@@ -166,13 +168,14 @@ for i=2:1:L
 end
 xClippedR(xi)=xClippedR(1);
 yClippedR(yi)=yClippedR(1);
+L=length(xClippedR);
 %disp(xClippedR);
 %disp(yClippedR);
 
 figure,
 title("Clipped Against Right");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
-plot(xClippedR,yClippedR,'blue','linewidth',2);
+plot(xClippedR,yClippedR,'blue','linewidth',1);
 hold on
 
 %For Clipped against top side
@@ -225,6 +228,6 @@ yClippedU(yi)=yClippedU(1);
 figure,
 title("Polygon Clipped Against Top");
 polygonDisplayFunction(xMin,yMin,xMax,yMax);
-plot(xClippedU,yClippedU,'blue','linewidth',2);
+plot(xClippedU,yClippedU,'blue','linewidth',1);
 hold on
 
